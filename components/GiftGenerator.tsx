@@ -130,7 +130,6 @@ const GiftGenerator = () => {
         return (
           <div className="space-y-4 mt-4">
             {songs.map((song, index) => (
-              <GiftBox key={index}>
                 <div className="space-y-4">
                   <Input
                     placeholder="วางลิงก์ YouTube/Spotify ที่นี่"
@@ -143,7 +142,6 @@ const GiftGenerator = () => {
                   />
                   {song.url && <MusicEmbed url={song.url} />}
                 </div>
-              </GiftBox>
             ))}
             {songs.length < 10 && (
               <Button onClick={() => setSongs([...songs, { url: '', title: '' }])}>
