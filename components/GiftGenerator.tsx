@@ -3,11 +3,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
 import MusicEmbed from './MusicEmbed';
-import GiftBox from './GiftBox';
 
 const GIFT_TYPES = [
   {
@@ -54,18 +52,11 @@ const GiftGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [generatedLink, setGeneratedLink] = useState('');
-  const [musicUrl, setMusicUrl] = useState('');
   const [photos, setPhotos] = useState<PhotoData[]>([]);
   const [coupons, setCoupons] = useState<CouponData[]>([]);
   const [songs, setSongs] = useState<{ url: string; title: string }[]>([]);
   const [fromName, setFromName] = useState('');
   const [toName, setToName] = useState('');
-
-  const validateMusicUrl = (url: string) => {
-    const playlistType = GIFT_TYPES.find(t => t.id === 'playlist');
-    if (!playlistType?.urlPatterns) return false;
-    return playlistType.urlPatterns.youtube.test(url) || playlistType.urlPatterns.spotify.test(url);
-  };
 
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
